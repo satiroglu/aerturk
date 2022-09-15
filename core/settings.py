@@ -117,15 +117,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join('media')
 
 # Add these new lines
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 )
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -134,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Tinymce Editor Settings
 
-# TINYMCE_JS_URL = os.path.join(BASE_DIR, "tinymce/tinymce.min.js")
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "tinymce/tinymce.min.js")
 TINYMCE_SPELLCHECKER = True
 TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "tinymce")
 TINYMCE_COMPRESSOR = False
@@ -149,6 +150,8 @@ TINYMCE_DEFAULT_CONFIG = {
                "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
                "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
                "a11ycheck ltr rtl | showcomments addcomment code",
-    "custom_undo_redo_levels": 10,
-    "language": "en_EN",  # To force a specific language instead of the Django current language.
+    "custom_undo_redo_levels": 20,
+    "image_advtab": "true",
+    "image_caption": "true",
+    # "language": "en_EN",  # To force a specific language instead of the Django current language.
 }
