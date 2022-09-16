@@ -23,4 +23,6 @@ admin.site.index_title = "Yönetim Paneli"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('', include('pages.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]

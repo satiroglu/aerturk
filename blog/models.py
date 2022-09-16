@@ -22,7 +22,7 @@ class Category(models.Model):
 
     # Other
     createdOn = models.DateTimeField(verbose_name="Oluşturulma Tarihi", auto_now_add=True)
-    updatedOn = models.DateTimeField(verbose_name="Güncellenme Tarihi",auto_now=True)
+    updatedOn = models.DateTimeField(verbose_name="Güncellenme Tarihi", auto_now=True)
     status = models.IntegerField(verbose_name="Durum", choices=STATUS, default=1)
 
     class Meta:
@@ -40,18 +40,17 @@ class Post(models.Model):
     title = models.CharField(verbose_name="Başlık", max_length=200, unique=True)
     slug = models.SlugField(verbose_name="Slug", max_length=200, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Kategori")
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name="blog_posts", verbose_name="Yazar",)
-    # content = models.TextField(verbose_name="Yazı")
-    yazi = tinymce_models.HTMLField(verbose_name="Yazı")
+    author = models.ForeignKey(User, on_delete= models.CASCADE, related_name="blog_posts", verbose_name="Yazar")
+    content = tinymce_models.HTMLField(verbose_name="Yazı")
 
     # SEO
-    seoTitle = models.CharField(verbose_name="SEO Başlık", max_length=200, unique=True)
+    seoTitle = models.CharField(verbose_name="SEO Başlık", max_length=200)
     seoKeywords = models.CharField(verbose_name="Anahtar Kelimeler", max_length=300)
-    seoDescription = models.TextField(verbose_name="SEO Açıklama",)
+    seoDescription = models.TextField(verbose_name="SEO Açıklama")
 
     # Other
     createdOn = models.DateTimeField(verbose_name="Oluşturulma Tarihi", auto_now_add=True)
-    updatedOn = models.DateTimeField(verbose_name="Güncellenme Tarihi",auto_now=True)
+    updatedOn = models.DateTimeField(verbose_name="Güncellenme Tarihi", auto_now=True)
     status = models.IntegerField(verbose_name="Durum", choices=STATUS, default=0)
 
     class Meta:

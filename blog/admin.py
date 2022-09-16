@@ -14,9 +14,9 @@ class PostAdmin(admin.ModelAdmin):
     def make_post_draft(modeladmin, request, queryset):
         queryset.update(status='0')
 
-    list_display = ('title', 'category', 'author', 'createdOn', 'updatedOn', 'status')
+    list_display = ('id', 'title', 'category', 'author', 'createdOn', 'updatedOn', 'status')
     list_filter = ('status','author')
-    list_display_links = ['title']
+    list_display_links = ['id', 'title']
     ordering = ['id']
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
@@ -41,8 +41,8 @@ class CategoryAdmin(admin.ModelAdmin):
     def make_category_draft(modeladmin, request, queryset):
         queryset.update(status='0')
 
-    list_display = ('name', 'description', 'createdOn', 'updatedOn', 'status')
-    list_display_links = ['name']
+    list_display = ('id', 'name', 'description', 'createdOn', 'updatedOn', 'status')
+    list_display_links = ['id', 'name']
     list_filter = ['status']
     ordering = ['id']
     search_fields = ['title', 'description']
@@ -68,11 +68,11 @@ class CommentAdmin(admin.ModelAdmin):
     def make_comment_draft(modeladmin, request, queryset):
         queryset.update(status='0')
 
-    list_display = ('id', 'post', 'author', 'createdOn', 'status')
+    list_display = ('id', 'post', 'author', 'email', 'createdOn', 'status')
     list_display_links = ['id', 'post', 'author']
     list_filter = ['status']
     ordering = ['id']
-    search_fields = ['post', 'author', 'comment']
+    search_fields = ['post', 'email', 'author', 'comment']
     prepopulated_fields = {'author': ('author',)}
     # list_editable = ['status']
     list_per_page = 20
